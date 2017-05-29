@@ -27,6 +27,7 @@
 		1ABB990A1EDBD4FE007A3C5E /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB99081EDBD4FE007A3C5E /* MatchTableViewCell.swift */; };
 		1ABB990B1EDBD4FE007A3C5E /* MatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ABB99091EDBD4FE007A3C5E /* MatchTableViewCell.xib */; };
 		1ABB990D1EDBF7FA007A3C5E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB990C1EDBF7FA007A3C5E /* ChatViewController.swift */; };
+		1ABB990F1EDC2EE7007A3C5E /* FacebookLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB990E1EDC2EE7007A3C5E /* FacebookLogin.swift */; };
 		1ACF9CEA1ED990F000B228AC /* ProfileCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF9CE91ED990F000B228AC /* ProfileCardView.xib */; };
 		1ACF9CEC1ED9951700B228AC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF9CEB1ED9951700B228AC /* TestViewController.swift */; };
 		1ACF9CF11ED9961700B228AC /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF9CF01ED9961700B228AC /* ProfileCardView.swift */; };
@@ -60,6 +61,7 @@
 		1ABB99081EDBD4FE007A3C5E /* MatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
 		1ABB99091EDBD4FE007A3C5E /* MatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchTableViewCell.xib; sourceTree = "<group>"; };
 		1ABB990C1EDBF7FA007A3C5E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		1ABB990E1EDC2EE7007A3C5E /* FacebookLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLogin.swift; sourceTree = "<group>"; };
 		1ACF9CE91ED990F000B228AC /* ProfileCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardView.xib; sourceTree = "<group>"; };
 		1ACF9CEB1ED9951700B228AC /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1ACF9CF01ED9961700B228AC /* ProfileCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				1A06B5C71ED93D0A0071F458 /* User.swift */,
+				1ABB990E1EDC2EE7007A3C5E /* FacebookLogin.swift */,
 				1A06B5C21ED92CCD0071F458 /* Extensions.swift */,
 				1A06B5B61ED7FCB50071F458 /* SwipeGestureHelper.swift */,
 				1ACF9CF21ED9C33500B228AC /* TestSwipeGestureHelper.swift */,
@@ -325,6 +328,7 @@
 				1ACF9CF11ED9961700B228AC /* ProfileCardView.swift in Sources */,
 				1A06B5C31ED92CCD0071F458 /* Extensions.swift in Sources */,
 				1ACF9CFB1EDACD5B00B228AC /* EditProfileViewController.swift in Sources */,
+				1ABB990F1EDC2EE7007A3C5E /* FacebookLogin.swift in Sources */,
 				1ABB99051EDAE24E007A3C5E /* EditProfileHelper.swift in Sources */,
 				1ABB990A1EDBD4FE007A3C5E /* MatchTableViewCell.swift in Sources */,
 				1ABB990D1EDBF7FA007A3C5E /* ChatViewController.swift in Sources */,

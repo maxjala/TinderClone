@@ -148,7 +148,7 @@ class User {
             }
             
 
-            if /* user["preference"] as? String == userGender && */ user["gender"] as? String == userPreference  {
+            if user["gender"] as? String == userPreference  {
 
                 if let name = user["userName"] as? String,
                     let id = user["id"] as? String,

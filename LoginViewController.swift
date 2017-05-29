@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class LoginViewController: UIViewController {
 
@@ -26,6 +27,14 @@ class LoginViewController: UIViewController {
             signUpButton.addTarget(self, action: #selector(directToSignUp), for: .touchUpInside)
         }
     }
+    
+    @IBOutlet weak var fbLoginButton: FBSDKLoginButton! {
+        didSet{
+            fbLoginButton.delegate = self
+            fbLoginButton.readPermissions = ["email", "public_profile"]
+        }
+    }
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,8 +112,6 @@ class LoginViewController: UIViewController {
     func directToMain(_ user: User) {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let navController = storyboard.instantiateViewController(withIdentifier: "NavigationController")
-        let vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-        vc?.currentUser = user
         present(navController, animated: true, completion: nil)
     }
     

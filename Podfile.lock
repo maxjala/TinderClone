@@ -1,4 +1,16 @@
 PODS:
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.23.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.23.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.23.0):
+    - FBSDKCoreKit
   - Firebase/Auth (4.0.0):
     - Firebase/Core
     - FirebaseAuth (= 4.0.0)
@@ -45,6 +57,9 @@ PODS:
   - JSQSystemSoundPlayer (2.0.1)
 
 DEPENDENCIES:
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -52,6 +67,10 @@ DEPENDENCIES:
   - JSQMessagesViewController
 
 SPEC CHECKSUMS:
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
+  FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
+  FBSDKShareKit: 65751c3b9937ab9d594e6c37611ecc115ceeb448
   Firebase: 284eea779b73fdff309791817da7c68bff8dd572
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -64,6 +83,6 @@ SPEC CHECKSUMS:
   JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
 
-PODFILE CHECKSUM: 2b52cce88b6407b4010cfc942ed66d8d11483a01
+PODFILE CHECKSUM: 58e5d4baddc62e0897ee999cc075c477f9a14002
 
 COCOAPODS: 1.2.0

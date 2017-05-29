@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class ViewController: UIViewController {
     
@@ -125,12 +126,10 @@ class ViewController: UIViewController {
     
     func setUpCardUI(_ user: User, profileImageView: UIImageView, nameAgeLabel: UILabel, cardView: UIView, superLikeView: UIStackView) {
         cardView.isHidden = false
-        var formattedString = ""
         superLikeView.isHidden = !user.superLiked
         
         profileImageView.loadImageUsingCacheWithUrlString(urlString: user.pictureArray.first!)
-        formattedString = "\(user.name), \(user.age)"
-        nameAgeLabel.text = formattedString
+        nameAgeLabel.text = user.name
     }
     
     @IBAction func handleSwipe(_ sender: UIPanGestureRecognizer) {
@@ -179,6 +178,9 @@ class ViewController: UIViewController {
             let storybord = UIStoryboard(name: "LoginStoryboard", bundle: Bundle.main)
             let logInVC = storybord.instantiateViewController(withIdentifier: "AuthNavigationController")
             present(logInVC, animated: true, completion: nil)
+            
+            let facebookLogin = FBSDKLoginManager()
+            facebookLogin.logOut()
             
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)

@@ -41,9 +41,14 @@
                                 <state key="normal" title="Login"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-9S-qMU">
-                                <rect key="frame" x="160" y="503" width="55" height="30"/>
+                                <rect key="frame" x="160" y="454" width="55" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxL-LA-s3V" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="97" y="542" width="180" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Login With Facebook"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -51,6 +56,7 @@
                     <navigationItem key="navigationItem" id="klz-5k-wEL"/>
                     <connections>
                         <outlet property="emailTextField" destination="4Lv-Zr-6wd" id="qfM-cT-iKe"/>
+                        <outlet property="fbLoginButton" destination="jxL-LA-s3V" id="CEL-sL-iUF"/>
                         <outlet property="loginButton" destination="6R7-CC-8dw" id="fE8-De-jm4"/>
                         <outlet property="passwordTextField" destination="vE9-n7-Thf" id="FdY-Gk-03S"/>
                         <outlet property="signUpButton" destination="uwT-9S-qMU" id="ecG-6D-2g3"/>
