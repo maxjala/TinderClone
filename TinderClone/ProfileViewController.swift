@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FBSDKLoginKit
 
 enum ProfileType {
     case myProfile
@@ -35,10 +37,26 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var unmatchButton: UIButton! {
+        didSet {
+            unmatchButton.addTarget(self, action: #selector(unmatchUserTapped), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var logoutButton: UIButton! {
+        didSet {
+            logoutButton.addTarget(self, action: #selector(logoutButtonTapped), for: .touchUpInside)
+            logoutButton.layer.cornerRadius = logoutButton.frame.height/2
+            logoutButton.layer.masksToBounds = true
+        }
+    }
+    
     @IBOutlet weak var editInfoButton: UIButton! {
         didSet {
             editInfoButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
             editInfoButton.isHidden = false
+            editInfoButton.layer.cornerRadius = editInfoButton.frame.height/3
+            editInfoButton.layer.masksToBounds = true
         }
     }
     
@@ -51,12 +69,22 @@ class ProfileViewController: UIViewController {
     }
     
     
-    var currentUser : User?
-    
+    var selectedUser : User?
+    var selectedUserID : String = ""
+    var selectedUserName : String = ""
     var profileType : ProfileType = .myProfile
+    
+    var ref: DatabaseReference!
+    var authUser = Auth.auth().currentUser
+    var currentUserID : String = ""
+    var matchID : String = ""
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        ref = Database.database().reference()
+        if let id = authUser?.uid {
+            currentUserID = id
+        }
         
         configureProfileType()
         navigationBarHidden()
@@ -74,21 +102,39 @@ class ProfileViewController: UIViewController {
     
     func configureProfileType() {
         if profileType == .myProfile {
-            
             User.generateCurrentUser(completion: { (user) in
                 if user != nil {
-                    self.currentUser = user
-                    self.setUpUI(for: self.currentUser!)
+                    self.selectedUser = user
+                    self.setUpUI(for: self.selectedUser!)
+                    self.unmatchButton.isHidden = true
+                    
                 }
             })
         } else if profileType == .matchedProfile {
-            setUpUI(for: currentUser!)
+            setUpUI(for: selectedUser!)
             editInfoButton.isHidden = true
             chatSettingsButton.isHidden = false
+            unmatchButton.isHidden = false
+            logoutButton.isHidden = true
+            createMatchID()
+            
         } else {
-            setUpUI(for: currentUser!)
+            setUpUI(for: selectedUser!)
             editInfoButton.isHidden = true
+            self.unmatchButton.isHidden = true
+            logoutButton.isHidden = true
+
         }
+    }
+    
+    func createMatchID() {
+        let matchedIDs = [currentUserID, selectedUser?.id]
+        //matchID = matchedIDs.sorted(by: <#(String?, String?) -> Bool#>)
+        let sortedID = matchedIDs.sorted(by: { (id1, id2) -> Bool in
+            id1! < id2!
+        })
+        
+        matchID = "\(String(describing: sortedID[0]))-\(String(describing: sortedID[1]))"
     }
 
     func setUpUI(for _user: User) {
@@ -109,31 +155,80 @@ class ProfileViewController: UIViewController {
     func editButtonTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController else {return}
         
-        guard let picArray = currentUser?.pictureArray else {return}
+        guard let picArray = selectedUser?.pictureArray else {return}
         
         vc.userPicURLArray = picArray
         vc.displayType = .editProfile
-        vc.currentUser = currentUser
+        vc.currentUser = selectedUser
         
         present(vc, animated: true, completion: nil)
 
     }
     
+    func unmatchUserTapped() {
+        guard let username = selectedUser?.name else {return}
+        
+        let alertController = UIAlertController(title: "Unmatch \(username)", message: "Are you sure you want to unmatch \(username)", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Unmatch", style: .destructive, handler: { (alert:UIAlertAction) in
+            self.unmatchUser()
+            self.dismissVC()
+        })
+        alertController.addAction(confirmAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func unmatchUser() {
+        guard let userID = selectedUser?.id else {return}
+        
+        
+        ref.child("users").child(userID).child("matches").child(currentUserID).removeValue()
+        ref.child("users").child(userID).child("liked").child(currentUserID).removeValue()
+        ref.child("users").child(userID).child("superliked").child(currentUserID).removeValue()
+        
+        ref.child("users").child(currentUserID).child("matches").child(userID).removeValue()
+        ref.child("users").child(currentUserID).child("liked").child(userID).removeValue()
+        ref.child("users").child(currentUserID).child("superliked").child(userID).removeValue()
+        
+        ref.child("matches").child(matchID).removeValue()
+        
+    }
+    
     func dismissVC() {
         guard let navVC = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else {return}
-        //dismiss(animated: true, completion: nil)
-    //navigationController?.popToViewController(navVC, animated: true)
         dismiss(animated: true, completion: nil)
         
     }
     
     func goToChatVC() {
         guard let chatVC = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {return}
-        chatVC.matchedUser = currentUser
+        chatVC.matchedUser = selectedUser
         
         //present(chatVC, animated: true, completion: nil)
         navigationController?.pushViewController(chatVC, animated: true)
         
+    }
+    
+    func logoutButtonTapped() {
+        let firebaseAuth = Auth.auth()
+        
+        do {
+            try firebaseAuth.signOut()
+            let storybord = UIStoryboard(name: "LoginStoryboard", bundle: Bundle.main)
+            let logInVC = storybord.instantiateViewController(withIdentifier: "AuthNavigationController")
+            present(logInVC, animated: true, completion: nil)
+            
+            let facebookLogin = FBSDKLoginManager()
+            facebookLogin.logOut()
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+
     }
     
     
@@ -147,8 +242,8 @@ extension ProfileViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if currentUser != nil {
-            return (currentUser?.pictureArray.count)!
+        if selectedUser != nil {
+            return (selectedUser?.pictureArray.count)!
         }
         
         return 0
@@ -158,7 +253,7 @@ extension ProfileViewController : UICollectionViewDataSource {
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PictureCollectionViewCell.cellIdentifier, for: indexPath) as! PictureCollectionViewCell
         
-        cell.pictureURL = currentUser?.pictureArray[indexPath.item]
+        cell.pictureURL = selectedUser?.pictureArray[indexPath.item]
         //cell.pictureURL = currentUser?.profilePicURL
         
         return cell

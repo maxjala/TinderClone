@@ -168,9 +168,7 @@ class User {
                             }
                         }
                     }
-                    
-                    //returnedUser.append(newUser)
-                    
+
                     completion(newUser)
                     return
                     
@@ -178,19 +176,6 @@ class User {
             }
         })
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
 }

@@ -122,7 +122,7 @@ extension MatchesViewController : UITableViewDelegate {
 
         //controller.currentUser
         controller.profileType = .matchedProfile
-        controller.currentUser = matchedUsers[indexPath.row]
+        controller.selectedUser = matchedUsers[indexPath.row]
         
         //present(controller, animated: true, completion: nil)
         navigationController?.pushViewController(controller, animated: true)

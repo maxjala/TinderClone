@@ -192,20 +192,21 @@ class EditProfileViewController: UIViewController {
             UserDefaults.saveUserLikes([])
             let post : [String : Any] = ["userName": nameTextField.text!, "bio" : bioTextView.text, "gender": genderSegControl.titleForSegment(at: genderSegControl.selectedSegmentIndex)!, "preference": modifiedString, "pictureArray": userPicURLArray]
             self.ref.child("users").child(currentUserID).updateChildValues(post)
+            directToMainViewController()
+            
+            
         } else {
             let post : [String:Any] = ["bio" : bioTextView.text, "gender": genderSegControl.titleForSegment(at: genderSegControl.selectedSegmentIndex)!, "preference": modifiedString, "pictureArray": userPicURLArray]
             self.ref.child("users").child(currentUserID).updateChildValues(post)
+            dismiss(animated: true, completion: nil)
         }
         
-        directToMainViewController()
     }
     
     
     func directToMainViewController() {
         let viewController = storyboard?.instantiateViewController(withIdentifier:"NavigationController") as! UINavigationController
-        //self.present(viewController, animated: true)
-        //navigationController?.popToViewController(viewController, animated: true)
-        dismiss(animated: true, completion: nil)
+        self.present(viewController, animated: true)
     }
     
     

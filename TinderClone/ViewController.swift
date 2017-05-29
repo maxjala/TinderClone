@@ -147,7 +147,7 @@ class ViewController: UIViewController {
     
     func imageTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {return}
-        vc.currentUser = preferredUsers[0]
+        vc.selectedUser = preferredUsers[0]
         vc.profileType = .unmatchedProfile
         navigationController?.present(vc, animated: true, completion: nil)
     }
@@ -164,32 +164,6 @@ class ViewController: UIViewController {
         vc.profileType = .myProfile
         navigationController?.present(vc, animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    @IBAction func tempLogoutButton(_ sender: Any) {
-        
-        let firebaseAuth = Auth.auth()
-        
-        do {
-            try firebaseAuth.signOut()
-            let storybord = UIStoryboard(name: "LoginStoryboard", bundle: Bundle.main)
-            let logInVC = storybord.instantiateViewController(withIdentifier: "AuthNavigationController")
-            present(logInVC, animated: true, completion: nil)
-            
-            let facebookLogin = FBSDKLoginManager()
-            facebookLogin.logOut()
-            
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
- 
-    }
-    
-
-    
 
 
 }
