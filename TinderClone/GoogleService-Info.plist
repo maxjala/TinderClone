@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>311984854231-cevlgqqdelp26c81uis5bol9oubgrdkl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.311984854231-cevlgqqdelp26c81uis5bol9oubgrdkl</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBnpWs2-CfivMuEWure316edyhIGaYLV3s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>311984854231</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.nextacademy.TinderClone</string>
+	<key>PROJECT_ID</key>
+	<string>tinderclone-cc7dc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tinderclone-cc7dc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:311984854231:ios:9afb7c3c55efe2c6</string>
+	<key>DATABASE_URL</key>
+	<string>https://tinderclone-cc7dc.firebaseio.com</string>
+</dict>
+</plist>

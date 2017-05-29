@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileCardView" customModule="TinderClone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mahmoud" translatesAutoresizingMaskIntoConstraints="NO" id="jfY-4s-EsM">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="455"/>
+                    <gestureRecognizers/>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="81" translatesAutoresizingMaskIntoConstraints="NO" id="btD-tn-GZY">
+                    <rect key="frame" x="57" y="0.0" width="261" height="69"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t2s-yK-dGW">
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="69"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="SU5-Xa-9iu"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BM4-iZ-Uhm">
+                            <rect key="frame" x="171" y="0.0" width="90" height="69"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="69" id="oeg-7H-crl"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bomber, 55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssY-yQ-gOb">
+                    <rect key="frame" x="16" y="380" width="344" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="WhN-W4-yZ8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="jfY-4s-EsM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="4pi-EF-eSe"/>
+                <constraint firstAttribute="bottom" secondItem="jfY-4s-EsM" secondAttribute="bottom" id="Cwi-qi-8TD"/>
+                <constraint firstItem="ssY-yQ-gOb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="JbB-BI-ni5"/>
+                <constraint firstAttribute="trailing" secondItem="jfY-4s-EsM" secondAttribute="trailing" id="RWw-8T-pqQ"/>
+                <constraint firstItem="btD-tn-GZY" firstAttribute="centerX" secondItem="ssY-yQ-gOb" secondAttribute="centerX" id="TlK-O7-8gc"/>
+                <constraint firstItem="jfY-4s-EsM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Y2n-p4-8Ab"/>
+                <constraint firstAttribute="bottom" secondItem="ssY-yQ-gOb" secondAttribute="bottom" constant="33" id="kLq-1a-bFq"/>
+                <constraint firstItem="btD-tn-GZY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="khh-89-Ry7"/>
+                <constraint firstItem="btD-tn-GZY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v5a-Py-Kz4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="likeImageView" destination="BM4-iZ-Uhm" id="kf7-pq-UHm"/>
+                <outlet property="nameLabel" destination="ssY-yQ-gOb" id="w9K-nF-D9r"/>
+                <outlet property="nopeImageView" destination="t2s-yK-dGW" id="UdQ-fD-rGG"/>
+                <outlet property="panGesture" destination="1OP-3T-KBm" id="dUr-v5-VoE"/>
+                <outlet property="profileImageView" destination="jfY-4s-EsM" id="wHh-md-qGs"/>
+            </connections>
+            <point key="canvasLocation" x="78.5" y="224.5"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="1OP-3T-KBm"/>
+    </objects>
+    <resources>
+        <image name="mahmoud" width="1152" height="1364"/>
+    </resources>
+</document>
