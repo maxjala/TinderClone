@@ -30,7 +30,12 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+    
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         if (Auth.auth().currentUser) != nil {
             print("User already logged in")
             
@@ -41,17 +46,12 @@ class LoginViewController: UIViewController {
                     UserDefaults.saveUserGender(user.gender)
                     UserDefaults.saveUserName(user.name)
                     UserDefaults.saveUserLikes(user.likedPeople)
-                    self.directToMain(user)
                 }
+                self.directToMain(user)
                 
             })
             
         }
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
     }
 

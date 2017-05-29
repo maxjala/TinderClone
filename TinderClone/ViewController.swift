@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -16,6 +15,8 @@ class ViewController: UIViewController {
         didSet{
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
             profileImageView.addGestureRecognizer(tapGesture)
+            profileImageView.layer.cornerRadius = 30
+            profileImageView.layer.masksToBounds = true
         }
     }
     
@@ -51,6 +52,8 @@ class ViewController: UIViewController {
         didSet{
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
             profile2ImageView.addGestureRecognizer(tapGesture)
+            profile2ImageView.layer.cornerRadius = 30
+            profile2ImageView.layer.masksToBounds = true
         }
     }
     
@@ -146,12 +149,13 @@ class ViewController: UIViewController {
     func imageTapped() {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {return}
         vc.currentUser = preferredUsers[0]
-        vc.profileType = .otherProfile
-        navigationController?.pushViewController(vc, animated: true)
+        vc.profileType = .unmatchedProfile
+        navigationController?.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func matchesButtonTapped(_ sender: UIBarButtonItem) {
-        
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "MatchesNavController") as? UINavigationController else {return}
+        navigationController?.present(vc, animated: true, completion: nil)
         
     }
     
@@ -159,10 +163,7 @@ class ViewController: UIViewController {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else {return}
         //vc.currentUser = preferredUsers[0]
         vc.profileType = .myProfile
-        navigationController?.pushViewController(vc, animated: true)
-        
-        
-        
+        navigationController?.present(vc, animated: true, completion: nil)
     }
     
     

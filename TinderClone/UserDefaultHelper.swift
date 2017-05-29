@@ -10,6 +10,17 @@ import Foundation
 
 extension UserDefaults {
     
+    static func saveUserID(_ id: String) {
+        UserDefaults.standard.removeObject(forKey: "userID")
+        UserDefaults.standard.set(id, forKey: "userID")
+    }
+    
+    static func getUserID() -> String? {
+        let id = UserDefaults.standard.value(forKey: "userID") as? String
+        return id
+    }
+    
+    
     //MARK: USER DEFAULTS FOR CURRENT USER GENDER PREFERENCE
     
     static func saveGenderPreference(_ preference: String) {
@@ -85,6 +96,25 @@ extension UserDefaults {
         UserDefaults.standard.set(urls, forKey: "picURLS")
         
         return urls
+    }
+    
+    static func saveUserMatches(_ matchedUserID: [String]) {
+        UserDefaults.standard.removeObject(forKey: "userMatches")
+        UserDefaults.standard.set(matchedUserID, forKey: "userMatches")
+    }
+    
+    static func getUserMatches() -> [String]? {
+        let matches = UserDefaults.standard.stringArray(forKey: "userMatches")
+        return matches
+    }
+    
+    static func updateUserMatches(_ newMatch: String) -> [String]? {
+        var match = UserDefaults.standard.stringArray(forKey: "userMatches")
+        match?.append(newMatch)
+        UserDefaults.standard.removeObject(forKey: "userMatches")
+        UserDefaults.standard.set(match, forKey: "userMatches")
+        
+        return match
     }
     
 }

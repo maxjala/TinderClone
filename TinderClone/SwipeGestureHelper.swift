@@ -140,7 +140,7 @@ class SwipeGestureHelper {
             let like = [user.id: "liked"]
             ref.child("users").child(currentUserID).child("liked").updateChildValues(like)
             
-            observeIfLiked(user)
+            observeIfLikedCreateMatch(user)
             
         }
         
@@ -164,7 +164,7 @@ class SwipeGestureHelper {
             ref.child("users").child(currentUserID).child("liked").updateChildValues(like)
             ref.child("users").child(currentUserID).child("superLiked").updateChildValues(superLike)
             
-            observeIfLiked(user)
+            observeIfLikedCreateMatch(user)
             
         }
         
@@ -173,7 +173,7 @@ class SwipeGestureHelper {
     
     
     
-    static func observeIfLiked(_ likedUser: User) {
+    static func observeIfLikedCreateMatch(_ likedUser: User) {
         var ref : DatabaseReference!
         let userAuth = Auth.auth().currentUser
         var currentUserID : String = ""
@@ -187,12 +187,19 @@ class SwipeGestureHelper {
                 if let liked = snapshot.key as? String {
                     
                     if liked == currentUserID {
-                        
-                        let matchID = "\(currentUserID)-\(likedUser.id)"
+
+                        let matchedIDs = [currentUserID, likedUser.id]
+
+                        let matchID = "\(matchedIDs.sorted()[0])-\(matchedIDs.sorted()[1])"
                         
                         let matchedUsers = ["users": [currentUserID: UserDefaults.getUserName(), likedUser.id: likedUser.name]]
                         
+                        let myRefPost = [likedUser.id : "match"]
+                        let theirRefPost = [currentUserID : "match"]
+                        
                         ref.child("matches").child(matchID).updateChildValues(matchedUsers)
+                        ref.child("users").child(currentUserID).child("matches").updateChildValues(myRefPost)
+                        ref.child("users").child("\(likedUser.id)").child("matches").updateChildValues(theirRefPost)
                         
                     }
                     return

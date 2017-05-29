@@ -10,7 +10,8 @@ import UIKit
 
 enum ProfileType {
     case myProfile
-    case otherProfile
+    case unmatchedProfile
+    case matchedProfile
 }
 
 class ProfileViewController: UIViewController {
@@ -27,17 +28,25 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var bioLabel: UILabel!
     
-    @IBOutlet weak var chatSettingsButton: UIButton!
+    @IBOutlet weak var chatSettingsButton: UIButton! {
+        didSet {
+            chatSettingsButton.isHidden = true
+            chatSettingsButton.addTarget(self, action: #selector(goToChatVC), for: .touchUpInside)
+        }
+    }
     
     @IBOutlet weak var editInfoButton: UIButton! {
         didSet {
             editInfoButton.addTarget(self, action: #selector(editButtonTapped), for: .touchUpInside)
+            editInfoButton.isHidden = false
         }
     }
     
     @IBOutlet weak var closeVCButton: UIButton! {
         didSet {
             closeVCButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
+            closeVCButton.layer.cornerRadius = closeVCButton.frame.width/2
+            closeVCButton.layer.masksToBounds = true
         }
     }
     
@@ -72,13 +81,13 @@ class ProfileViewController: UIViewController {
                     self.setUpUI(for: self.currentUser!)
                 }
             })
-
-            editInfoButton.isHidden = false
-            chatSettingsButton.isHidden = true
+        } else if profileType == .matchedProfile {
+            setUpUI(for: currentUser!)
+            editInfoButton.isHidden = true
+            chatSettingsButton.isHidden = false
         } else {
             setUpUI(for: currentUser!)
             editInfoButton.isHidden = true
-            chatSettingsButton.setTitle("Chat", for: .normal)
         }
     }
 
@@ -106,19 +115,29 @@ class ProfileViewController: UIViewController {
         vc.displayType = .editProfile
         vc.currentUser = currentUser
         
-        navigationController?.present(vc, animated: true, completion: nil)
-        
-        //present(vc, animated: true, completion: nil)
+        present(vc, animated: true, completion: nil)
+
     }
     
     func dismissVC() {
         guard let navVC = storyboard?.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else {return}
         //dismiss(animated: true, completion: nil)
     //navigationController?.popToViewController(navVC, animated: true)
-        navigationController?.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
     }
-
+    
+    func goToChatVC() {
+        guard let chatVC = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else {return}
+        chatVC.matchedUser = currentUser
+        
+        //present(chatVC, animated: true, completion: nil)
+        navigationController?.pushViewController(chatVC, animated: true)
+        
+    }
+    
+    
+    
 }
 
 extension ProfileViewController : UICollectionViewDataSource {

@@ -23,6 +23,10 @@
 		1A06B5C81ED93D0A0071F458 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A06B5C71ED93D0A0071F458 /* User.swift */; };
 		1A92E6811ED979EE00CB04F7 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A92E6801ED979EE00CB04F7 /* UserDefaultHelper.swift */; };
 		1ABB99051EDAE24E007A3C5E /* EditProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB99041EDAE24E007A3C5E /* EditProfileHelper.swift */; };
+		1ABB99071EDBD49B007A3C5E /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB99061EDBD49B007A3C5E /* MatchesViewController.swift */; };
+		1ABB990A1EDBD4FE007A3C5E /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB99081EDBD4FE007A3C5E /* MatchTableViewCell.swift */; };
+		1ABB990B1EDBD4FE007A3C5E /* MatchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ABB99091EDBD4FE007A3C5E /* MatchTableViewCell.xib */; };
+		1ABB990D1EDBF7FA007A3C5E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABB990C1EDBF7FA007A3C5E /* ChatViewController.swift */; };
 		1ACF9CEA1ED990F000B228AC /* ProfileCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF9CE91ED990F000B228AC /* ProfileCardView.xib */; };
 		1ACF9CEC1ED9951700B228AC /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF9CEB1ED9951700B228AC /* TestViewController.swift */; };
 		1ACF9CF11ED9961700B228AC /* ProfileCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACF9CF01ED9961700B228AC /* ProfileCardView.swift */; };
@@ -52,6 +56,10 @@
 		1A06B5C71ED93D0A0071F458 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1A92E6801ED979EE00CB04F7 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
 		1ABB99041EDAE24E007A3C5E /* EditProfileHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileHelper.swift; sourceTree = "<group>"; };
+		1ABB99061EDBD49B007A3C5E /* MatchesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
+		1ABB99081EDBD4FE007A3C5E /* MatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
+		1ABB99091EDBD4FE007A3C5E /* MatchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MatchTableViewCell.xib; sourceTree = "<group>"; };
+		1ABB990C1EDBF7FA007A3C5E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		1ACF9CE91ED990F000B228AC /* ProfileCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCardView.xib; sourceTree = "<group>"; };
 		1ACF9CEB1ED9951700B228AC /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		1ACF9CF01ED9961700B228AC /* ProfileCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCardView.swift; sourceTree = "<group>"; };
@@ -146,10 +154,12 @@
 		1A06B5C61ED93CE80071F458 /* MainStoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				1A06B5A41ED7F1640071F458 /* ViewController.swift */,
 				1A06B5A61ED7F1640071F458 /* Main.storyboard */,
-				1ACF9CFA1EDACD5B00B228AC /* EditProfileViewController.swift */,
+				1A06B5A41ED7F1640071F458 /* ViewController.swift */,
 				1ACF9CF81EDA2CD700B228AC /* ProfileViewController.swift */,
+				1ACF9CFA1EDACD5B00B228AC /* EditProfileViewController.swift */,
+				1ABB99061EDBD49B007A3C5E /* MatchesViewController.swift */,
+				1ABB990C1EDBF7FA007A3C5E /* ChatViewController.swift */,
 				1ACF9CEB1ED9951700B228AC /* TestViewController.swift */,
 			);
 			name = MainStoryBoard;
@@ -162,6 +172,8 @@
 				1ACF9CF01ED9961700B228AC /* ProfileCardView.swift */,
 				1ACF9CF41EDA2AFA00B228AC /* PictureCollectionViewCell.swift */,
 				1ACF9CF51EDA2AFA00B228AC /* PictureCollectionViewCell.xib */,
+				1ABB99081EDBD4FE007A3C5E /* MatchTableViewCell.swift */,
+				1ABB99091EDBD4FE007A3C5E /* MatchTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -238,6 +250,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABB990B1EDBD4FE007A3C5E /* MatchTableViewCell.xib in Resources */,
 				1ACF9CF71EDA2AFA00B228AC /* PictureCollectionViewCell.xib in Resources */,
 				1A06B5AD1ED7F1640071F458 /* LaunchScreen.storyboard in Resources */,
 				1A06B5B91ED86B4D0071F458 /* LoginStoryboard.storyboard in Resources */,
@@ -313,9 +326,12 @@
 				1A06B5C31ED92CCD0071F458 /* Extensions.swift in Sources */,
 				1ACF9CFB1EDACD5B00B228AC /* EditProfileViewController.swift in Sources */,
 				1ABB99051EDAE24E007A3C5E /* EditProfileHelper.swift in Sources */,
+				1ABB990A1EDBD4FE007A3C5E /* MatchTableViewCell.swift in Sources */,
+				1ABB990D1EDBF7FA007A3C5E /* ChatViewController.swift in Sources */,
 				1A06B5A51ED7F1640071F458 /* ViewController.swift in Sources */,
 				1ACF9CF61EDA2AFA00B228AC /* PictureCollectionViewCell.swift in Sources */,
 				1A06B5B71ED7FCB50071F458 /* SwipeGestureHelper.swift in Sources */,
+				1ABB99071EDBD49B007A3C5E /* MatchesViewController.swift in Sources */,
 				1A06B5BB1ED89F180071F458 /* DetailSignUpViewController.swift in Sources */,
 				1A06B5BD1ED89F250071F458 /* LoginViewController.swift in Sources */,
 				1A06B5A31ED7F1640071F458 /* AppDelegate.swift in Sources */,

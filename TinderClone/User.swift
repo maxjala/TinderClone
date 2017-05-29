@@ -7,8 +7,7 @@
 //
 
 import Foundation
-import FirebaseDatabase
-import FirebaseAuth
+import Firebase
 
 class User {
     
@@ -23,6 +22,7 @@ class User {
     var pictureArray : [String] = []
     var likedPeople : [String] = []
     var superLiked = false
+    var matches : [String] = []
     
     init(anID: String, aName: String, aGender: String, aPreference: String, aPictureArray: [String], aBio: String) {
         id = anID
@@ -47,6 +47,7 @@ class User {
             currentUserID = id
             
             var likeArray : [String] = []
+            var matchArray : [String] = []
             //var superLikeArray : [String] = []
         
             ref.child("users").child(currentUserID).observe(.value, with: { (snapshot) in
@@ -64,8 +65,22 @@ class User {
                         likeArray = Array(likeDict.keys)
                     }
                     
+                    if let matchDict = userDetails["matches"] as? [String:Any] {
+                        matchArray = Array(matchDict.keys)
+                    }
+                    
                     let currentUser = User(anID: id, aName: name, aGender: gender, aPreference: preference, aPictureArray: picURLs, aBio: bio)
                     currentUser.likedPeople = likeArray
+                    currentUser.matches = matchArray
+                    
+                    UserDefaults.saveUserID(currentUser.id)
+                    UserDefaults.saveGenderPreference(currentUser.preference)
+                    UserDefaults.saveUserGender(currentUser.gender)
+                    UserDefaults.saveUserName(currentUser.name)
+                    UserDefaults.saveUserLikes(currentUser.likedPeople)
+                    UserDefaults.saveUserMatches(matchArray)
+                    
+                    
                     completion(currentUser)
                 }
             })
@@ -103,7 +118,9 @@ class User {
                 return
             }
             
-            if user["preference"] as? String == "Both" {
+            //check selected user preferencee
+            //if user["preference"] as? String == "Both" && user["gender"] as? String == userPreference  {
+            if userPreference == "Both" {
                 
                 if let name = user["userName"] as? String,
                     let id = user["id"] as? String,
@@ -131,7 +148,7 @@ class User {
             }
             
 
-            if user["preference"] as? String == userGender && user["gender"] as? String == userPreference  {
+            if /* user["preference"] as? String == userGender && */ user["gender"] as? String == userPreference  {
 
                 if let name = user["userName"] as? String,
                     let id = user["id"] as? String,
@@ -161,5 +178,19 @@ class User {
             }
         })
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
