@@ -111,7 +111,7 @@ class SwipeGestureHelper {
         //profileView.image = picArray[0]
         
         if userArray.count > 1 {
-            profileView.loadImageUsingCacheWithUrlString(urlString: userArray[1].profilePicURL)
+            profileView.loadImageUsingCacheWithUrlString(urlString: userArray[1].pictureArray[0])
             let formattedString = "\(userArray[1].name), \(userArray[1].age)"
             
             nameAgeLabel.text = formattedString
